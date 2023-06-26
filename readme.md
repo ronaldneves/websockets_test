@@ -7,3 +7,4 @@
 
 - npm install [express](https://www.npmjs.com/package/express)
 - npm install [nodemon](https://www.npmjs.com/package/nodemon)
+- npm install [socket.io](https://www.npmjs.com/package/socket.io)
