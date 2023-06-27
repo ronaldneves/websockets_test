@@ -2,14 +2,24 @@ import atualizaTexto from "./documento.js";
 
 const socket = io();
 
-
-function emitirTexto(texto) {
-    socket.emit("texto", texto);
+function selecionaDocumento(nome) {
+    socket.emit("selecionar_documento", nome, (texto) => {
+        atualizaTexto(texto);
+    });    
 }
 
 
-socket.on("texto_clientes", (texto) => {
-       atualizaTexto(texto);
+function emitirTexto(dados) {
+    socket.emit("texto", dados);
+}
+
+
+socket.on("texto_documento", (texto) => {
+    atualizaTexto(texto);
 })
 
-export default emitirTexto;
+socket.on("disconnect", (motivo) => {
+    console.log(`Servidor desconectado. Motivo: ${motivo}`);
+});
+
+export {emitirTexto, selecionaDocumento};
